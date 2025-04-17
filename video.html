@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Desi Video Page</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Video Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f8f8f8;
+    }
+    .video-container {
+      margin: 20px auto;
+      width: 80%;
+      max-width: 720px;
+    }
+    iframe {
+      width: 100%;
+      height: 405px;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Video Player</h1>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="categories.html">Categories</a> |
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <main>
-    <video id="mainVideo" width="100%" height="auto" controls autoplay>
-      <source src="" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+  <h1>Watch Our Videos</h1>
 
-    <section class="thumbnails">
-      <h3>Related Videos</h3>
-      <div class="thumbs">
-        <a href="video.html?vid=1"><img src="images/thumb1.jpg" alt="Thumb 1"></a>
-        <a href="video.html?vid=2"><img src="images/thumb2.jpg" alt="Thumb 2"></a>
-        <a href="video.html?vid=3"><img src="images/thumb3.jpg" alt="Thumb 3"></a>
-      </div>
-    </section>
-  </main>
+<div class="video-item" onclick="handleClick(this, 'https://lullfork.com/qnmu56mbbz?key=example')">
+  <div class="thumbnail" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">
+    <img src="https://assets.onecompiler.app/43etd878j/43etd8b5y/(m=edLTGgaaaa)(mh=tBBKt4WEfdkWPNmv)2.jpeg" alt="Video Thumbnail">
+  </div>
+  <iframe src="https://www.pornhub.com/embed/67d614a994f1d" frameborder="0" allowfullscreen style="display:none;"></iframe>
+  <div class="video-title">best tday</div>
+</div>  
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const vid = urlParams.get('vid');
+<div class="video-item" onclick="handleClick(this, 'https://lullfork.com/qnmu56mbbz?key=example')">
+  <div class="thumbnail" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">
+    <img src="https://assets.onecompiler.app/43etd878j/43etd8b5y/(m=edLTGgaaaa)(mh=tBBKt4WEfdkWPNmv)2.jpeg" alt="Video Thumbnail">
+  </div>
+  <iframe src="https://www.pornhub.com/embed/67d614a994f1d?autoplay=1" frameborder="0" allowfullscreen style="display:none;"></iframe>
+  <div class="video-title">best tday</div>
+</div>  
+  
+<div class="video-item" onclick="handleClick(this, 'https://lullfork.com/qnmu56mbbz?key=example')">
+  <div class="thumbnail" onclick="this.nextElementSibling.style.display='block'; this.style.display='none';">
+    <img src="https://assets.onecompiler.app/43etd878j/43etd8b5y/(m=edLTGgaaaa)(mh=tBBKt4WEfdkWPNmv)2.jpeg" alt="Video Thumbnail">
+  </div>
+  <iframe src="https://www.pornhub.com/embed/67f26151225f6?autoplay=1" frameborder="0" allowfullscreen style="display:none;"></iframe>
+  <div class="video-title">best tday</div>
+</div>>
 
-    const videoSrcs = {
-      1: 'videos/desi1.mp4',
-      2: 'videos/desi2.mp4',
-      3: 'videos/desi3.mp4'
-    };
-
-    if (vid && videoSrcs[vid]) {
-      document.querySelector("#mainVideo source").src = videoSrcs[vid];
-      document.getElementById("mainVideo").load();
-    }
-  </script>
 </body>
 </html>
