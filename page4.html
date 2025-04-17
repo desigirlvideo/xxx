@@ -1,75 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Desi Video Player</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta charset="UTF-8">
+  <title>Video Player</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       background-color: #111;
       color: #fff;
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
     }
     .container {
-      max-width: 1000px;
+      width: 80%;
       margin: auto;
       padding: 20px;
     }
-    h2 {
-      margin-top: 10px;
-    }
-    .video-wrapper {
-      background: #222;
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .related {
-      margin-top: 40px;
-    }
-    .related h3 {
-      margin-bottom: 10px;
+    iframe {
+      border: none;
+      display: block;
+      width: 100%;
+      height: 400px;
     }
     .related-videos {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 15px;
-    }
-    .related-videos a {
-      color: white;
-      text-decoration: none;
-      background: #1e1e1e;
-      padding: 10px;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
-    .related-videos a:hover {
-      background: #333;
+      margin-top: 20px;
     }
     .related-videos img {
-      width: 100%;
-      border-radius: 5px;
-    }
-    .video-title {
-      font-size: 1.2em;
-      font-weight: bold;
-      margin-top: 5px;
+      width: 150px;
+      height: auto;
+      margin-right: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="video-wrapper">
-      <video id="videoPlayer" controls autoplay width="100%"></video>
-      <h2 id="videoTitle"></h2>
-      <p id="videoViews"></p>
-    </div>
+    <h2 id="videoTitle">Loading...</h2>
+    <iframe id="videoPlayer" allowfullscreen></iframe>
+    <p id="videoViews"></p>
 
-    <div class="related">
+    <div class="related-videos" id="relatedVideos">
       <h3>Related Videos</h3>
-      <div class="related-videos" id="relatedVideos"></div>
+      <div id="relatedList"></div>
     </div>
   </div>
 
@@ -77,50 +46,51 @@
     const videos = {
       1: {
         title: "Desi Bhabhi Romance",
-        src: "https://www.pornhub.com/embed/67d614a994f1d",
+        src: "https://www.pornhub.com/embed/676d14a994f1d",
         views: "1.2M views",
         related: [
-          { title: "Hot Indian Aunty", thumb: "assets/images/thumb2.jpg", link: "video.html?vid=2" },
-          { title: "College Girl First Time", thumb: "assets/images/thumb3.jpg", link: "video.html?vid=3" },
+          { title: "Hot Indian Aunty", thumb: "assets/images/thumb2.jpg", link: "page.html?vid=2" },
+          { title: "College Girl First Time", thumb: "assets/images/thumb3.jpg", link: "page.html?vid=3" }
         ]
       },
-
-     2: {
+      2: {
         title: "Hot Indian Aunty",
-        src: https://www.pornhub.com/embed/67d614a994f1d",
+        src: "https://www.pornhub.com/embed/1234567890abc",
         views: "950K views",
         related: [
-          { title: "Desi Bhabhi Romance", thumb: "https://assets.onecompiler.app/43emeud5x/43eqrughh/(m=q73--JYbedLTGgaaaa)(mh=pLaHBT36iEifI6wD)0.jpeg", link: "video.html?vid=1" },
-          { title: "Village Romance", thumb: "https://assets.onecompiler.app/43emeud5x/43eqrughh/(m=q73--JYbedLTGgaaaa)(mh=pLaHBT36iEifI6wD)0.jpeg", link: "video.html?vid=4" },
+          { title: "Desi Bhabhi Romance", thumb: "assets/images/thumb1.jpg", link: "page.html?vid=1" },
+          { title: "Village Romance", thumb: "assets/images/thumb4.jpg", link: "page.html?vid=4" }
         ]
-      },
-      // Add more videos as needed
+      }
     };
 
+    // Get video ID from URL (?vid=1)
     const urlParams = new URLSearchParams(window.location.search);
-    const vid = urlParams.get("vid");
-    const data = videos[vid];
+    const vid = urlParams.get('vid');
 
-    if (data) {
-      document.getElementById("videoTitle").innerText = data.title;
-      document.getElementById("videoPlayer").src = data.src;
-      document.getElementById("videoViews").innerText = data.views;
+    if (vid && videos[vid]) {
+      const video = videos[vid];
+      document.getElementById('videoTitle').textContent = video.title;
+      document.getElementById('videoViews').textContent = video.views;
+      document.getElementById('videoPlayer').src = video.src;
 
-      const relatedDiv = document.getElementById("relatedVideos");
-      data.related.forEach((video) => {
-        relatedDiv.innerHTML += `
-          <a href="${video.link}">
-            <img src="${video.thumb}" alt="${video.title}" />
-            <div class="video-title">${video.title}</div>
-          </a>
-        `;
+      const related = document.getElementById('relatedList');
+      video.related.forEach(item => {
+        const a = document.createElement('a');
+        a.href = item.link;
+        a.style.display = 'inline-block';
+        a.style.textAlign = 'center';
+        a.style.marginRight = '10px';
+        a.innerHTML = `<img src="${item.thumb}" alt="${item.title}"><br>${item.title}`;
+        related.appendChild(a);
       });
     } else {
-      document.querySelector(".video-wrapper").innerHTML = "<h2>Video Not Found</h2>";
+      document.getElementById('videoTitle').textContent = "Video not found";
     }
   </script>
 </body>
 </html>
+
 
 <div class="pagination">
   <a href="index.html">&laquo; Previous</a>
